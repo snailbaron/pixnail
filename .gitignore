@@ -1,0 +1,6 @@
+/.vs/
+/upixnail/bin/
+/upixnail/obj/
+project.lock.json
+*.pfx
+*.swp

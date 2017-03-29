@@ -1,0 +1,110 @@
+﻿<Page x:Class="upixnail.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:upixnail"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+      mc:Ignorable="d"
+      Unloaded="Page_Unloaded">
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Main menu -->
+        <CommandBar Name="MainMenu"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True">
+            <AppBarButton Name="MenuOpen"
+                          Icon="OpenFile"
+                          Label="Open"
+                          Click="MenuOpen_Click" />
+            <AppBarButton Name="ZoomIn"
+                          Icon="ZoomIn"
+                          Label="Zoom In"
+                          Click="ZoomIn_Click" />
+            <AppBarButton Name="ZoomOut"
+                          Icon="ZoomOut"
+                          Label="Zoom Out"
+                          Click="ZoomOut_Click" />
+        </CommandBar>
+
+        <!-- Tools panel -->
+        <StackPanel Name="Toolbox"
+                    RelativePanel.Below="MainMenu"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True">
+            <TextBlock Text="Tools"
+                       HorizontalAlignment="Center"/>
+            <Grid Background="LightGray"
+                  Padding="5">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin"
+                                Value="5" />
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="ToolsPencilButton"
+                        Grid.Row="0"
+                        Grid.Column="0">
+                    <TextBlock Text="Pencil" />
+                </Button>
+                <Button Name="ToolsBucketButton"
+                        Grid.Row="0"
+                        Grid.Column="1">
+                    <TextBlock Text="Bucket" />
+                </Button>
+            </Grid>
+
+            <TextBlock Text="Color" HorizontalAlignment="Center" />
+            <Border HorizontalAlignment="Stretch">
+                <Button Name="ColorPicker"
+                        Width="80"
+                        Height="50"
+                        Background="Green"
+                        HorizontalAlignment="Center"
+                        Click="ColorPicker_Click">
+                </Button>
+            </Border>
+        </StackPanel>
+
+        <!-- Status bar -->
+        <RelativePanel Name="StatusBar"
+                       RelativePanel.RightOf="Toolbox"
+                       RelativePanel.AlignRightWithPanel="True"
+                       RelativePanel.AlignBottomWithPanel="True"
+                       Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                       BorderBrush="Green"
+                       BorderThickness="1">
+            <TextBlock Name="ZoomText"
+                       Text="Zoom zoom"
+                       RelativePanel.AlignRightWithPanel="True" />
+            <Border BorderBrush="DarkGray"
+                    BorderThickness="5"
+                    RelativePanel.RightOf="ZoomText"
+                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True" />
+        </RelativePanel>
+
+        <!-- Image buffer -->
+        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                      VerticalScrollBarVisibility="Auto"
+                      RelativePanel.RightOf="Toolbox"
+                      RelativePanel.Below="MainMenu"
+                      RelativePanel.Above="StatusBar"
+                      RelativePanel.AlignRightWithPanel="True">
+            <Border BorderBrush="Red"
+                    BorderThickness="1">
+                <canvas:CanvasControl x:Name="ImageCanvas"
+                                      Draw="ImageCanvas_Draw"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+            </Border>
+        </ScrollViewer>
+    </RelativePanel>
+</Page>

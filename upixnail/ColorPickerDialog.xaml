@@ -1,0 +1,145 @@
+﻿<ContentDialog
+    x:Class="upixnail.ColorPickerDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:upixnail"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="TITLE"
+    PrimaryButtonText="Button1"
+    SecondaryButtonText="Button2"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <ContentDialog.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="10" />
+        </Style>
+    </ContentDialog.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel Width="500"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+            <!-- Color selectors -->
+            <Grid Name="ColorPickersPanel"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- RGB color picker -->
+
+                <TextBlock Text="R"
+                           Grid.Column="0"
+                           Grid.Row="0" />
+                <Slider Name="ColorRSlider"
+                        Header="R"
+                        Minimum="0"
+                        Maximum="255"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.RGB_R}" />
+                <TextBox Name="ColorRText"
+                         Grid.Row="0"
+                         Grid.Column="3" />
+
+                <TextBlock Text="G"
+                           Grid.Column="0"
+                           Grid.Row="1" />
+                <Slider Name="ColorGSlider"
+                        Minimum="0"
+                        Maximum="255"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.RGB_G}" />
+                <TextBox Name="ClorGText"
+                         Grid.Row="1"
+                         Grid.Column="3" />
+
+                <TextBlock Text="B"
+                           Grid.Column="0"
+                           Grid.Row="2" />
+                <Slider Name="ColorBSlider"
+                        Minimum="0"
+                        Maximum="255"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.RGB_B}" />
+                <TextBox Name="ColorBText"
+                         Grid.Row="2"
+                         Grid.Column="3" />
+
+                <!-- HSV color picker -->
+
+                <TextBlock Text="H"
+                           Grid.Column="0"
+                           Grid.Row="3" />
+                <Slider Name="ColorHSlider"
+                        Minimum="0"
+                        Maximum="360"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.HSV_H}" />
+                <TextBox Name="ColorHText"
+                         Grid.Row="3"
+                         Grid.Column="3" />
+
+                <TextBlock Text="S"
+                           Grid.Column="0"
+                           Grid.Row="4" />
+                <Slider Name="ColorSSlider"
+                        Minimum="0"
+                        Maximum="100"
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.HSV_S}" />
+                <TextBox Name="ColorSText"
+                         Grid.Row="4"
+                         Grid.Column="3" />
+
+                <TextBlock Text="V"
+                           Grid.Column="0"
+                           Grid.Row="5" />
+                <Slider Name="ColorVSlider"
+                        Minimum="0"
+                        Maximum="100"
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        Value="{x:Bind Mode=TwoWay, Path=ColorState.HSV_V}" />
+                <TextBox Name="ColorVText"
+                         Grid.Row="5"
+                         Grid.Column="3" />
+            </Grid>
+
+            <!-- Color sample -->
+            <Rectangle Fill="{x:Bind Mode=OneWay, Path=ColorState.ColorBrush}"
+                       Height="80"
+                       Width="128"
+                       Margin="10"
+                       RelativePanel.Below="ColorPickersPanel"
+                       RelativePanel.AlignLeftWithPanel="True"
+                       RelativePanel.AlignRightWithPanel="True" />
+        </RelativePanel>
+    </Grid>
+</ContentDialog>
